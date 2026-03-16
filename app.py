@@ -15,5 +15,5 @@ import csv,datetime, time
  
  
 if __name__ =='__main__':
-    pass
+      Base.metadata.create_all(engine)
     
