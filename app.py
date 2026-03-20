@@ -17,7 +17,7 @@ def menu():
             return choice
         else:
             input('''
-                  \rPlease choose one of the options above
+                  \rPlease choose one of the options below
                   \r [V,  N,  A,  B, E]
                   \rPress enter to try again.
                   ''')
@@ -216,11 +216,20 @@ def app():
             print(f'Least expensive Product is {least_exp.product_name} with price of ${least_exp.product_price/100}\n')
             print(f'Brand with most products: {max_brand.brand_name}\n')
             input('Press enter to return to the main menu')
-                
+        
+        
         elif choice == 'B':
             # backup product
+            brands = session.query(Brands).all()
+            with open('backup_brands.csv','w', newline='') as file:
+                writer = csv.writer(file)
+                writer.writerow(['brand_name'])
+                for b in brands:
+                    writer.writerow([b.brand_name])
+            
+            
             products = session.query(Products).all()
-            with open('backup.csv', 'w', newline='') as file:
+            with open('backup_inventory.csv', 'w', newline='') as file:
                 writer = csv.writer(file)
 
                 writer.writerow([
